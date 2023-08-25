@@ -10,7 +10,4 @@ create table katalog(
      ISBN int(10),
      judul varchar(255),
      pengarang varchar(255),
-     penerbit varchar(255),
-
-
-perubahan
+     penerbit varchar(255),hohoohohohodadawnafwadnefnlknfken
