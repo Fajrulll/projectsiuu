@@ -1,0 +1,16 @@
+create database toko_buku;
+use toko_buku;
+create table supplier(
+     ID_supplier int(12) primary key,
+     nama varchar(255),
+     telp int(15),
+     email varchar(255));
+create table katalog(
+     ID_buku int(10) primary key,
+     ISBN int(10),
+     judul varchar(255),
+     pengarang varchar(255),
+     penerbit varchar(255),
+
+
+perubahan
