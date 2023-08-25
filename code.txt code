@@ -1,0 +1,89 @@
+create database toko_buku;
+use toko_buku;
+create table supplier(
+     ID_supplier int(12) primary key,
+     nama varchar(255),
+     telp int(15),
+     email varchar(255));
+create table katalog(
+     ID_buku int(10) primary key,
+     ISBN int(10),
+     judul varchar(255),
+     pengarang varchar(255),
+     penerbit varchar(255),
+     tahun_terbit date,
+     stock int(255),
+     harga_jual varchar(255),
+     harga_beli varchar(255),
+     ID_supplier int(10),
+     foreign key(ID_supplier) references supplier(ID_supplier));
+create table pelanggan(
+     ID_pelanggan int(10) primary key,
+     nama varchar(255),
+     telp int(15),
+     alamat varchar(255),
+     email varchar(255),
+     no_kartu_kredit varchar(10));
+ create table akun(
+     ID_akun int(10) primary key,
+     ID_pelanggan int(10),
+     username varchar(50),
+     password varchar(50),
+     foreign key(ID_pelanggan) references pelanggan(ID_pelanggan));
+create table kurir(
+     ID_kurir int(10) primary key,
+     nama varchar(255),
+     telp int(15),
+     email varchar(255));
+create table pemesanan(
+     ID_pemesanan int(10) primary key,
+     ID_buku int(10),
+     tanggal date,
+     jumlah int(255),
+     ID_pelanggan int(10),
+     alamat_kirim varchar(255),
+     foreign key(ID_buku) references katalog(ID_buku),
+     foreign key(ID_pelanggan) references pelanggan(ID_pelanggan));
+create table pengiriman(
+     ID_pengiriman int(10) primary key,
+     ID_pemesanan int(10),
+     tanggal_kirim date,
+     tanggal_terima date,
+     status varchar(255),
+     no_resi int(12),
+     ID_kurir int(10),
+     foreign key(ID_pemesanan) references pemesanan(ID_pemesanan),
+     foreign key(ID_kurir) references kurir(ID_kurir));
+insert into supplier values
+     (1110 ,'gatot',088899955511,'gatot15@gmail.com'),
+     (1111 ,'jum',088899955512,'jumah25@gmail.com'),
+     (1112 ,'siti',088899955513,'siti89@gmail.com'),
+     (1113 ,'buyung',088899955514,'buyuung@gmail.com'),
+     (1114 ,'cipto',088899955515,'cipto@gmail.com'),
+     (1115 ,'kusuma',088899955516,'kusumo@gmail.com'),
+     (1116 ,'ali',088899955517,'ali99@gmail.com'),
+     (1117 ,'abdi',088899955518,'abdida@gmail.com'),
+     (1118 ,'asa',088899955519,'asa45@gmail.com'),
+     (1119 ,'wito',088899955520,'ito@gmail.com');
+insert into katalog values
+     (1101 , 112110,'hujan','yuan','pt.gramedia',2008-09-12,1000,'Rp50000','Rp20000',1118),
+     (1102 , 112111,'dia','mira','pt.gramedia',2007-03-03,1000,'Rp60000','Rp20000',1118),
+     (1103 , 112112,'tabrak lari','supri','pt.kocak',2015-08-01,500,'Rp30000','Rp10000',1115),
+     (1104 , 112113,'ngintip','ilham','pt.kocak',2015-08-09,500,'Rp25000','Rp5000',1115),
+     (1105 , 112114,'manusia cicak','koreng','pt.kocak',2015-09-12,500,'Rp30000','Rp5000',1115),
+     (1106 , 112115,'nyatakan','fajar','pt.gramedia',2001-02-20,500,'Rp500000','Rp5000',1113),
+     (1107 , 112116,'cara pintar matematika dalam 1 detik','fajar','pt.gramedia',1999-09-19,500,'Rp50000','Rp5000',1113),
+     (1108 , 112117,'cara berjalan','juan','pt.gramedia',1999-10-19,500,'Rp50000','Rp5000',1113),
+     (1109 , 112118,'haheho','dio','pt.gramedia',2010-10-10,500,'Rp90000','Rp5000',1110),
+     (1110 , 112119,'jelmaan','upi','pt.gramedia',2010-10-07,500,'Rp90000','Rp5000',1110);
+ insert into pelanggan values
+     (1201,'findo',088890239911,'jl.ikan nila','findoni@gmail.com',119021),
+     (1202,'dafa',088890239912,'jl.sidomulyo','dafad@gmail.com',119022),
+     (1203,'dion',088890239913,'jl.siomukti','diano@gmail.com',119023),
+     (1204,'fano',088890239914,'jl.plowijen','fano@gmail.com',119024),
+     (1205,'zidan',088890239915,'jl.plowijen','idan@gmail.com',119025),
+     (1206,'dona',088890239916,'jl.plowijen','idon@gmail.com',119026),
+     (1207,'noa',088890239917,'jl.ijen','nona@gmail.com',119027),
+     (1208,'santoso',088890239918,'jl.ijen','santo@gmail.com',119028),
+     (1209,'junaidi',088890239919,'jl.ikan nila','juni@gmail.com',119029),
+     (1210,'akbar',088890239920,'jl.ikan nila','akbar@gmail.com',119030);
